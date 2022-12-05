@@ -24,4 +24,11 @@ jobs:
   ff-only-merge:
     runs-on: ubuntu-latest
     steps:
-      - run: echo 'Something happened'
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ inputs.target }}
+          fetch-depth: 0
+      - run: |
+          echo 'Merging ${{ inputs.source }} into ${{ inputs.target }}'
+          git merge --ff-only ${{ inputs.source }}
+          git push
