@@ -1,0 +1,27 @@
+name: Merge release
+run-name: ff-only merge into a release branch
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: 'Source branch'
+        required: true
+        default: 'develop'
+        type: choice
+        options:
+        - develop
+        - qa
+      target:
+        description: 'Target branch'
+        required: true
+        default: 'qa'
+        type: choice
+        options:
+        - qa
+        - devrelease
+        - release
+jobs:
+  ff-only-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo 'Something happened'
